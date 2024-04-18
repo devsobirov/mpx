@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Helpers\RoleHelper;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
@@ -17,7 +18,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/home';
+    public const HOME = '/cp';
 
     /**
      * Define your route model bindings, pattern filters, and other route configuration.
@@ -32,6 +33,9 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('api')
                 ->prefix('api')
                 ->group(base_path('routes/api.php'));
+
+            Route::middleware(['web', 'checkRole:'. RoleHelper::ROLE_ADMIN])->prefix('cp')->as('cp.')
+                ->group(base_path('routes/cp_routes.php'));
 
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
