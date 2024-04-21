@@ -3,8 +3,14 @@
 use Illuminate\Support\Facades\Route;
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::group([
+    'prefix' => LaravelLocalization::setLocale(),
+    'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+], function() {
 
-Auth::routes(['register' => false, 'verify' => false, 'reset' => false]);
+    Route::get('/', function () {
+        return view('welcome');
+    });
+
+    Auth::routes(['register' => false, 'verify' => false, 'reset' => false]);
+});

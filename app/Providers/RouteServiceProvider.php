@@ -34,7 +34,7 @@ class RouteServiceProvider extends ServiceProvider
                 ->prefix('api')
                 ->group(base_path('routes/api.php'));
 
-            Route::middleware(['web', 'checkRole:'. RoleHelper::ROLE_ADMIN])->prefix('cp')->as('cp.')
+            Route::middleware(['web', 'checkRole:'. RoleHelper::ROLE_ADMIN])
                 ->group(base_path('routes/cp_routes.php'));
 
             Route::middleware('web')
