@@ -10,7 +10,8 @@
                 <a href="/" class="main-menu__item" style="padding: 0; margin: 0;">{{ __('menu.home') }}</a>
 
                 <nav class="main-menu__item-submenu">
-{{--                    <a href="{{ route('web.blog', [], false) }}" class="main-menu__submenu-item">{{ __('menu.news') }}</a>--}}
+                    <a href="#" class="main-menu__submenu-item">{{ __('menu.news') }}</a>
+                    <a href="#" class="main-menu__submenu-item">{{ __('menu.news') }}</a>
                 </nav>
             </div>
             <div class="main-menu__item">
