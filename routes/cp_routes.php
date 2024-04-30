@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CP\CategoryController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -13,9 +14,11 @@ $localizationConfig = [
     'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
 ];
 
-Route::group($localizationConfig, function() {
-    Route::group(['prefix' => 'cp', 'as' => 'cp.'], function () {
-        Route::get('/', [\App\Http\Controllers\CP\HomeController::class, 'index'])->name('home');
+Route::group(['prefix' => 'cp', 'as' => 'cp.'], function () {
+    Route::get('/', [\App\Http\Controllers\CP\HomeController::class, 'index'])->name('home');
+
+    Route::controller(CategoryController::class)->prefix('categories')->as('categories.')->group(function () {
+        Route::get('/', 'index')->name('index');
     });
 });
 
