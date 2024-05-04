@@ -14,7 +14,7 @@ class Category extends Model implements HasPublicUrlContract
 {
     use HasTranslations;
 
-    public $table = 'categories';
+    protected $table = 'categories';
     public $timestamps = false;
     protected $guarded = false;
 

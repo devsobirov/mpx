@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 abstract class BaseController extends Controller
 {
+
+    public function __construct()
+    {
+        \App::setLocale('ru');
+    }
+
     protected string $layout = 'cp.layouts.cp';
     protected $_preparedContent = '';
 

@@ -139,6 +139,7 @@ handleInModal('order-details-button', 'order-details', 40, 20);
 
 // Games
 handleInModal('create-game-button', 'game-form', 25, 20);
+handleInModal('modal-btn', 'game-form', 25, 20);
 handleInModal('edit-game-button', 'game-form', 25, 20);
 handleInModal('create-server-button', 'server-form', 25, 22);
 handleInModal('edit-server-button', 'server-form', 25, 22);

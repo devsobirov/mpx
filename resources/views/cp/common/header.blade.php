@@ -8,16 +8,15 @@
         <nav id="main-menu">
             <div class="main-menu__item">
                 <a href="/" class="main-menu__item" style="padding: 0; margin: 0;">{{ __('menu.home') }}</a>
-
-                <nav class="main-menu__item-submenu">
-                    <a href="#" class="main-menu__submenu-item">{{ __('menu.news') }}</a>
-                    <a href="#" class="main-menu__submenu-item">{{ __('menu.news') }}</a>
-                </nav>
             </div>
             <div class="main-menu__item">
-                {{ __('menu.settings') }}
-                <nav class="main-menu__item-submenu"></nav>
+                <a href="{{route('cp.products.index')}}" class="main-menu__item" style="padding: 0; margin: 0 1rem;">Игры</a>
             </div>
+            <nav class="main-menu__item-submenu">
+                Has sub menu
+                <a href="#" class="main-menu__submenu-item">{{ __('menu.news') }}</a>
+                <a href="#" class="main-menu__submenu-item">{{ __('menu.news') }}</a>
+            </nav>
         </nav>
 
         <div class="ml-auto"></div>
@@ -38,22 +37,6 @@
                 </svg>
             </button>
         </form>
-        <div class="main-menu__item ml-1">
-            @php $currentLocale = \LaravelLocalization::getCurrentLocale(); @endphp
-            <a class="flex jc-center ai-center" style="text-decoration: none" rel="alternate" hreflang="{{ $currentLocale }}" href="{{ \LaravelLocalization::getLocalizedURL($currentLocale, null, [], true) }}">
-                <strong>{{ strtoupper($currentLocale) }}</strong> <img src="{{asset("img/$currentLocale.png")}}" style="padding-left: .5rem;width: 35px; box-sizing: border-box;display: inline-block;">
-            </a>
-
-            <nav class="main-menu__item-submenu" style="width: 5rem; left: 100%">
-                @foreach(\LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
-                    @if($currentLocale != $localeCode)
-                        <a class="main-menu__submenu-item flex jc-center ai-center" rel="alternate" hreflang="{{ $localeCode }}" href="{{ \LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
-                            {{ strtoupper($localeCode) }} <img src="{{asset("img/$localeCode.png")}}" style="padding-left: .5rem;width: 35px; box-sizing: border-box;display: inline-block;">
-                        </a>
-                    @endif
-                @endforeach
-            </nav>
-        </div>
     </div>
 </header>
 
