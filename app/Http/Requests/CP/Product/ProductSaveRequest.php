@@ -24,9 +24,10 @@ class ProductSaveRequest extends FormRequest
             'discount' => 'nullable|numeric',
             'steam_app_id' => 'nullable|unique:products,steam_app_id,'.$this->route()->parameter('product')?->id,
             'released_at' => 'nullable|date',
+            'status' => 'boolean',
+            'image_og' => 'nullable|image|max:255',
             'en' => 'nullable|array',
             'ru' => 'nullable|array',
-            'image_og' => 'nullable|image|max:255',
         ];
     }
 
@@ -34,7 +35,11 @@ class ProductSaveRequest extends FormRequest
     {
         $status = (bool) $this->status;
         $slug = $this->slug ?: \Str::slug($this->name);
-        if ($count = DB::table('products')->where('slug', $slug)->count()) {
+        $count = DB::table('products')
+            ->whereNot('id', $this->route()->parameter('product')?->id)
+            ->where('slug', $slug)
+            ->count();
+        if ($count) {
             $slug .= ('-'.$count+1);
         }
 

@@ -48,7 +48,7 @@
                         <div class="flex" style="gap: 6px; flex-wrap: wrap; max-width:320px" >
                             <a href="{{route('cp.products.form', $game->id)}}" class="button_outline_small">Редактировать</a>
                             <a href="#" target="_blank" class="button_outline_small">Посмотреть на сайте</a>
-                            <a href="{{route('cp.products.delete', ['shopProduct' => $game->id], false)}}" class="button_red_small game-delete-button"
+                            <a href="{{route('cp.products.delete', $game->id, false)}}" class="button_red_small game-delete-button"
                                data-question="{{ __('games.gameDeleteConfirmationTitle', ['name' => $game->name]) }}"
                                data-hint="{{ __('games.gameDeleteConfirmationDesc') }}"
                             >{{ __('common.delete') }}</a>

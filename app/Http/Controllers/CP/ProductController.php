@@ -27,7 +27,8 @@ class ProductController extends Controller
     {
         $product = $request->id
             ? Product::findOrFail($request->id)
-            : new Product($request->validated($this->baseFields()));
+            : new Product();
+        $this->fillBaseFields($product, $request->validated());
         $product->image = $this->uploadImage($request->file('image'), $product) ?: $product->image;
         $product->image_og = $this->uploadImage($request->file('og_image'), $product) ?: $product->image_og;
         $product->image_feed = $this->uploadImage($request->file('image'), $product, $product::getWatermarkPath()) ?:
@@ -51,8 +52,13 @@ class ProductController extends Controller
         return $steamService->data;
     }
 
-    private function baseFields(): array
+    private function fillBaseFields(&$product, array $data)
     {
-        return [];
+        $baseFields = ['name', 'slug', 'developers', 'publishers', 'keywords', 'discount', 'steam_app_id', 'released_at'];
+        foreach ($baseFields as $property) {
+            if (isset($data[$property])) {
+                $product->$property = $data[$property];
+            }
+        }
     }
 }
