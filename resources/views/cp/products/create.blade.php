@@ -7,7 +7,7 @@ $product = new \App\Models\Product();
             @csrf
             <div class="flex ai-center jc-sb mb-2">
                 <h4>Созадние с помощью данных из Steam</h4>
-                <a href="{{ route('cp.products.index') }}" class="button_outline ml-auto">Все игры</a>
+                <a href="{{ route('cp.products.fetch-steam') }}" class="button_outline ml-auto">Все игры</a>
             </div>
             <div class="flex jc-end mt-auto">
                 <label class="field w-full">
@@ -21,7 +21,7 @@ $product = new \App\Models\Product();
 
     <div class="pad flex column mt-3 pr-4 pl-4 pt-2 pb-2">
 
-        <form action="#" id="productForm" method="POST" enctype="multipart/form-data">
+        <form action="{{route('cp.products.save')}}" id="productForm" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="flex column" style="width: 100%">
 
@@ -31,7 +31,7 @@ $product = new \App\Models\Product();
                     <div class="flex mt-3">
                         <h4 style="width: 120px; margin-right: 1.5rem;">Статус: </h4>
                         <label class="checkbox">
-                            <input type="checkbox" name="status" class="checkbox__input" value="1">
+                            <input type="checkbox" name="status" class="checkbox__input" value="1" checked>
                             <span class="checkbox__box"></span>
                             <span class="checkbox__text">Показать на сайте</span>
                         </label>
@@ -39,7 +39,7 @@ $product = new \App\Models\Product();
                     <div class="flex mt-2">
                         <h4 style="width: 120px; margin-right: 1.5rem;">Популярный: </h4>
                         <label class="checkbox">
-                            <input type="checkbox" readonly class="checkbox__input">
+                            <input type="checkbox" class="checkbox__input" value="1">
                             <span class="checkbox__box"></span>
                             <span class="checkbox__text">Популярный</span>
                         </label>
@@ -82,7 +82,7 @@ $product = new \App\Models\Product();
     }
 
     const productForm = document.getElementById('productForm');
-    const fetchSteamLink = '/';
+    const fetchSteamLink = "{{route('cp.products.fetch-steam')}}";
     const createProductLink = '/';
     function shopProductData() {
         return {
@@ -100,6 +100,7 @@ $product = new \App\Models\Product();
                     this.productFormData.steam_app_id= response.steam_app_id;
                     this.productFormData.discount = response.discount;
                     this.productFormData.name = response.name;
+                    this.productFormData.slug = response.slug;
                     this.productFormData.en.genres = response.genres_en;
                     this.productFormData.ru.genres = response.genres_ru;
 
@@ -121,6 +122,8 @@ $product = new \App\Models\Product();
                 let data = new FormData(productForm);
                 try {
                     let response = await UIKit.network.post(createProductLink, data);
+                    console.log(response, response.data);
+                    window.location = "{{route('cp.products.form')}}"+'/'+response.data.product.id;
                     UIKit.spinner.hide(productForm);
                 } catch (errors) {
                     console.error(errors);

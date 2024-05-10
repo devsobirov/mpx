@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers\CP;
 
+use App\Helpers\ImageHelper;
 use App\Http\Controllers\Controller;
+use App\Interfaces\HasImageUploadContract;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 
 abstract class BaseController extends Controller
 {
@@ -25,8 +29,11 @@ abstract class BaseController extends Controller
         $this->_preparedContent .= $content;
     }
 
-    protected function sendPreparedResponse(bool $allowCaching = false)
+    protected function sendPreparedResponse(?string $view = '', array $data = [], bool $allowCaching = false)
     {
+        if (!empty($view)) {
+            $this->view($view, $data);
+        }
         $res = response($this->_preparedContent);
         if ($allowCaching) {
             $res->header('Cache-Control', 'no-cache, no-store, must-revalidate')
@@ -39,5 +46,34 @@ abstract class BaseController extends Controller
     protected function view($name, $params = [])
     {
         $this->render($name, $params, request()->ajax() ? [] : [$this->layout]);
+    }
+
+    protected function handleTranslation(Model &$model,string $lang, array $data) : void
+    {
+        if (property_exists($model, 'translations') && is_array($model->translations)) {
+            foreach ($data as $property => $value) {
+                if (in_array($property, $model->translations)) {
+                    $model->setTranslation($property, $lang, $value);
+                }
+            }
+        }
+    }
+
+    protected function uploadImage(?UploadedFile $img, HasImageUploadContract $model, ?string $watermark = null) : ?string
+    {
+        $imagePath = false;
+        if (!empty($img)) {
+            $helper = new ImageHelper();
+            $dir = $model::getImageBaseDir();
+            $width = $model::getImgWidth();
+            $height = $model::getImgHeight();
+
+            $path = $watermark
+                ? $helper->storeAsWebpWithWatermark($img, $watermark, $dir, $width, $height)
+                : $helper->storeAsWebp($img, $dir, $width, $height);
+
+            if ($path) $imagePath = $path;
+        }
+        return $imagePath;
     }
 }

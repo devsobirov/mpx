@@ -18,7 +18,7 @@
 
     <label class="field" style="width: 23%">
         <span class="field__label">% скидк из Steam</span>
-        <input type="number" step="0.1"  class="field__input" name="discount">
+        <input type="number" step="0.1"  class="field__input" name="discount" x-model="productFormData.discount">
     </label>
 
     <label class="field mt-3" style="width: 50%">

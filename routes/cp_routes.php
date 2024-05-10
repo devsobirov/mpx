@@ -18,8 +18,10 @@ Route::group(['prefix' => 'cp', 'as' => 'cp.'], function () {
 
     Route::controller(ProductController::class)->prefix('products')->as('products.')->group(function () {
        Route::get('/', 'index')->name('index');
-       Route::get('/create', 'create')->name('create');
-       Route::get('/edit/{product}', 'edit')->name('edit');
+       Route::get('/form/{product?}', 'form')->name('form');
+       Route::post('/save', 'save')->name('save');
+       Route::delete('/delete/{product}', 'delete')->name('delete');
+       Route::post('/fetch-steam', 'fetchSteam')->name('fetch-steam');
     });
 });
 

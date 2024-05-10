@@ -27,7 +27,6 @@ return new class extends Migration
             $table->string('steam_app_id')->nullable();
 
             $table->float('discount')->nullable();
-            $table->boolean('is_popular')->default(false);
             $table->timestamp('released_at')->nullable();
 
             $table->boolean('status')->default(false);
