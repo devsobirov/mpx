@@ -16,13 +16,13 @@ class ProductSaveRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'slug' => 'required|unique:products,slug,'.$this->route()->parameter('product')?->id,
-            'image' => 'required|image|max:5120',
+            'slug' => 'required|unique:products,slug,'.$this->id,
+            'image' => ($this->id ? 'nullable' : 'required') .'|image|max:5120',
             'developers' => 'nullable|string|max:255',
             'publishers' => 'nullable|string|max:255',
             'keywords' => 'nullable|string|max:255',
             'discount' => 'nullable|numeric',
-            'steam_app_id' => 'nullable|unique:products,steam_app_id,'.$this->route()->parameter('product')?->id,
+            'steam_app_id' => 'nullable|unique:products,steam_app_id,'.$this->id,
             'released_at' => 'nullable|date',
             'status' => 'boolean',
             'image_og' => 'nullable|image|max:255',
@@ -36,7 +36,7 @@ class ProductSaveRequest extends FormRequest
         $status = (bool) $this->status;
         $slug = $this->slug ?: \Str::slug($this->name);
         $count = DB::table('products')
-            ->whereNot('id', $this->route()->parameter('product')?->id)
+            ->whereNot('id', $this->id)
             ->where('slug', $slug)
             ->count();
         if ($count) {

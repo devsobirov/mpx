@@ -50,9 +50,11 @@ abstract class BaseController extends Controller
 
     protected function handleTranslation(Model &$model,string $lang, array $data) : void
     {
-        if (property_exists($model, 'translations') && is_array($model->translations)) {
+        if (property_exists($model, 'translatable') && is_array($model->translatable)) {
             foreach ($data as $property => $value) {
-                if (in_array($property, $model->translations)) {
+                \Log::debug(__METHOD__, compact('property', 'value'));
+                if (in_array($property, $model->translatable)) {
+                    \Log::debug(__METHOD__, compact('property', 'value'));
                     $model->setTranslation($property, $lang, $value);
                 }
             }

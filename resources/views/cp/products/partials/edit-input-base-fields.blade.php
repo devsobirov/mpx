@@ -23,7 +23,7 @@
 
     <label class="field mt-3" style="width: 50%">
         <span class="field__label">Загрузить постер - ширина х высота = 2х3</span>
-        <input type="file" x-model="productFormData.image" required class="field__input" name="image" style="height: auto; padding: .5rem">
+        <input type="file" class="field__input" name="image" style="height: auto; padding: .5rem">
     </label>
 </div>
 <div class="flex mt-2" style="align-items: baseline; gap: 40px">
@@ -65,10 +65,12 @@
 <div class="flex ai-center mt-3">
     <label class="field w-full pr-2">
         <span class="field__label">Описание - RU</span>
-        <input type="text"  class="field__input" name="ru[description]" value="{{$product->getTranslation('description', 'ru', false)}}">
+        <input type="text"  class="field__input" name="ru[description]" >
+{{--        value="{{$product->getTranslation('description', 'ru', false)}}"--}}
     </label>
     <label class="field w-full">
         <span class="field__label">Описание - EN</span>
-        <input type="text"  class="field__input" name="en[description]" value="{{$product->getTranslation('description', 'en', false)}}">
+        <input type="text"  class="field__input" name="en[description]" >
+{{--        value="{{$product->getTranslation('description', 'en', false)}}"--}}
     </label>
 </div>

@@ -1,12 +1,12 @@
 
-<div class="width-limiter" x-data="shopProductData()" x-init="initTinyMCE()">
+<div class="width-limiter" x-data="shopProductData()">
 
     <div class="pad flex column mt-3 pr-4 pl-4 pt-2 pb-2">
         <div class="flex ai-center jc-sb mb-4">
             <h4>Редактировать - "{{$product->name}}"</h4>
             <a href="{{route('cp.products.index')}}" class="button_outline ml-2 no-white-space">{{ __('Все товары') }}</a>
         </div>
-        <form id="productForm" method="POST" enctype="multipart/form-data">
+        <form id="productForm" @submit.prevent="submitProductForm()" action="{{route('cp.products.save')}}" method="POST" enctype="multipart/form-data">
             @csrf
             <input type="hidden" value="{{$product->id}}" name="id">
             <div class="flex column" style="width: 100%">
@@ -44,11 +44,10 @@
 
 <script>
     const productForm = document.getElementById('productForm');
-    const createProductLink = '{{route('cp.products.save', $product->id, false)}}';
+    const createProductLink = '{{route('cp.products.save')}}';
 
     function shopProductData() {
         return {
-            langTabs: defaultLangTabs(),
             productFormData: {},
             async submitProductForm() {
                 const productForm = document.getElementById('productForm');
@@ -59,7 +58,7 @@
 
                 try {
                     let response = await UIKit.network.post(createProductLink, data);
-                    this.productCreated = true;
+                    console.log(response.data)
                     UIKit.spinner.hide(productForm);
                     window.location.reload()
                 } catch (errors) {

@@ -36,7 +36,7 @@ class ProductController extends Controller
         $this->handleTranslation($product, 'ru', $request->ru);
         $this->handleTranslation($product, 'en', $request->en);
         $product->save();
-
+        \Log::debug(__METHOD__, [$product]);
         return $request->expectsJson()
             ? response(['success' => 'ok', 'product' => $product], 200)
             : redirect()->route('cp.products.form', ['product' => $product->id])->with('success', 'Успешно');

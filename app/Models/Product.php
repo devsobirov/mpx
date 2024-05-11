@@ -15,11 +15,12 @@ class Product extends Model implements
     use HasTranslations;
     use HasImageUpload;
 
-    public $translatable = ['genres', 'description', 'meta_title', 'meta_description'];
+    public $translatable = ['genres', 'meta_title', 'meta_description']; //'description',
     protected $guarded = false;
     protected $casts = ['released_at' => 'datetime'];
 
-    const IMAGE_BASE_DIR = 'products';
+    const IMAGE_BASE_DIR = 'assets/images/games';
+    const WATERMARK_PATH = 'img/sectico.png';
 
     public function getUrlParams(): array
     {
