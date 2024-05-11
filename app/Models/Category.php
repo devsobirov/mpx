@@ -2,17 +2,24 @@
 
 namespace App\Models;
 
+use App\Interfaces\HasImageUploadContract;
 use App\Interfaces\HasPublicUrlContract;
+use App\Traits\HasImageUpload;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\Translatable\HasTranslations;
 
-class Category extends Model implements HasPublicUrlContract
+class Category extends Model implements
+    HasPublicUrlContract,
+    HasImageUploadContract
 {
     use HasTranslations;
+    use HasImageUpload;
+
+    const IMAGE_WIDTH = 350;
+    const IMAGE_BASE_DIR = 'cp-assets/img/watermark';
 
     protected $table = 'categories';
     public $timestamps = false;
@@ -22,17 +29,17 @@ class Category extends Model implements HasPublicUrlContract
 
     public function children(): HasMany
     {
-        return $this->hasMany(self::class, 'parent_id', 'id');
+        return $this->hasMany(self::class, 'parent', 'slug');
     }
 
     public function parent(): BelongsTo
     {
-        return $this->belongsTo(self::class, 'parent_id', 'id');
+        return $this->belongsTo(self::class, 'parent', 'slug');
     }
 
     public function scopeParents(Builder $query)
     {
-        $query->where('parent_id', null);
+        $query->where('parent', null);
     }
 
     public function getUrlParams(): array
@@ -47,11 +54,11 @@ class Category extends Model implements HasPublicUrlContract
 
     public function isParent(): bool
     {
-        return $this->parent_id === null;
+        return $this->parent === null || $this->parent === '';
     }
 
     public function isChild(): bool
     {
-        return (bool) $this->parent_id;
+        return (bool) $this->parent;
     }
 }

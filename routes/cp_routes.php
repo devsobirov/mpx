@@ -14,6 +14,9 @@ Route::group(['prefix' => 'cp', 'as' => 'cp.'], function () {
 
     Route::controller(CategoryController::class)->prefix('categories')->as('categories.')->group(function () {
         Route::get('/', 'index')->name('index');
+        Route::get('/{parent?}/{child?}', 'form')->name('form');
+        Route::post('/save/{category?}', 'save')->name('save');
+        Route::post('/delete/{category}', 'delete')->name('delete');
     });
 
     Route::controller(ProductController::class)->prefix('products')->as('products.')->group(function () {

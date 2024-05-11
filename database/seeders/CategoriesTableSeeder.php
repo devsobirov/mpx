@@ -15,8 +15,8 @@ class CategoriesTableSeeder extends Seeder
             if ($this->isNewCategory($parent['slug'])) {
                 $item = Category::create($parent);
 
-                foreach (self::getChildren($item->id) as $child) {
-                    if ($this->isNewCategory($child['slug'], $item->id)) {
+                foreach (self::getChildren($item->slug) as $child) {
+                    if ($this->isNewCategory($child['slug'])) {
                         Category::create($child);
                     }
                 }
@@ -27,11 +27,11 @@ class CategoriesTableSeeder extends Seeder
     public static function getParents(): array
     {
         $parents = [];
-        $parents[] = self::getItemData(['ru' => 'Ключи', 'en' => 'Keys'], 1);
-        $parents[] = self::getItemData(['ru' => 'Аккаунты', 'en' => 'Accounts'], 2);
-        $parents[] = self::getItemData(['ru' => 'DLC'], 3);
-        $parents[] = self::getItemData(['ru' => 'Золото', 'en' => 'Gold', 1]);
-        $parents[] = self::getItemData(['ru' => 'Бустинг', 'en' => 'Busting', 1]);
+        $parents[] = self::getItemData(['ru' => 'Ключи', 'en' => 'Keys']);
+        $parents[] = self::getItemData(['ru' => 'Аккаунты', 'en' => 'Accounts']);
+        $parents[] = self::getItemData(['ru' => 'DLC']);
+        $parents[] = self::getItemData(['ru' => 'Золото', 'en' => 'Gold']);
+        $parents[] = self::getItemData(['ru' => 'Бустинг', 'en' => 'Busting']);
 
         return $parents;
     }
@@ -40,23 +40,26 @@ class CategoriesTableSeeder extends Seeder
     {
         $children = [];
 
-        $children[] = self::getItemData(['ru' => 'Steam'], 1, $parent_id);
-        $children[] = self::getItemData(['ru' => 'Xbox'], 1, $parent_id);
+        $children[] = self::getItemData(['ru' => 'Steam'],  $parent_id);
+        $children[] = self::getItemData(['ru' => 'Xbox'],  $parent_id);
         return $children;
     }
 
-    private static function getItemData(array $name, ?int $order = null, ?int $parentId = null)
+    private static function getItemData(array $name, ?string $parent = null)
     {
+        $slug = strtolower(\Str::slug($name['en'] ?? $name['ru']));
+        $slug = $parent ?
+            $parent . '/' . $slug
+            : $slug;
         return [
             'name' => $name,
-            'parent_id' => $parentId,
-            'order' => $order,
-            'slug' => strtolower(\Str::slug($name['en'] ?? $name['ru'])),
+            'parent' => $parent,
+            'slug' => $slug,
         ];
     }
 
-    private function isNewCategory(string $slug, ?int $parentId = null): bool
+    private function isNewCategory(string $slug): bool
     {
-        return !DB::table('categories')->where('slug', $slug)->where('parent_id', $parentId)->exists();
+        return !DB::table('categories')->where('slug', $slug)->exists();
     }
 }

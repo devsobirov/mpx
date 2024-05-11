@@ -12,6 +12,9 @@
             <div class="main-menu__item">
                 <a href="{{route('cp.products.index')}}" class="main-menu__item" style="padding: 0; margin: 0 1rem;">Игры</a>
             </div>
+            <div class="main-menu__item">
+                <a href="{{route('cp.categories.index')}}" class="main-menu__item" style="padding: 0; margin: 0 1rem;">Категории</a>
+            </div>
             <nav class="main-menu__item-submenu">
                 Has sub menu
                 <a href="#" class="main-menu__submenu-item">{{ __('menu.news') }}</a>

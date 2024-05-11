@@ -11,16 +11,17 @@ return new class extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
             $table->json('name');
-            $table->string('slug');
-            $table->unsignedBigInteger('parent_id')->nullable();
-            $table->json('meta_title')->nullable();
-            $table->json('meta_description')->nullable();
-            $table->integer('order')->nullable();
+            $table->string('slug')->unique();
+            $table->string('watermark')->nullable();
+            $table->string('parent')->nullable();
+        });
 
-            $table->unique(['parent_id', 'slug']);
-            $table->foreign('parent_id')
-                ->references('id')
-                ->on('categories');
+        Schema::table('categories', function (Blueprint $table) {
+            $table->foreign('parent')
+                ->references('slug')
+                ->on('categories')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
         });
     }
 
