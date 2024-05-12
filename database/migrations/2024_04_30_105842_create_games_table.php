@@ -27,6 +27,7 @@ return new class extends Migration
             $table->timestamp('released_at')->nullable();
 
             $table->boolean('status')->default(false);
+            $table->integer('offers_count')->default(0);
             $table->timestamps();
         });
     }

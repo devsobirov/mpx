@@ -12,7 +12,7 @@ class GameController extends Controller
 {
     public function index()
     {
-        $games = Game::paginate(25);
+        $games = Game::with('catalog')->paginate(25);
         return $this->sendPreparedResponse('cp.games.index', compact('games'));
     }
 
@@ -37,7 +37,7 @@ class GameController extends Controller
         $game->save();
         \Log::debug(__METHOD__, [$game]);
         return $request->expectsJson()
-            ? response(['success' => 'ok', 'Game' => $game], 200)
+            ? response(['success' => 'ok', 'game' => $game], 200)
             : redirect()->route('cp.games.form', ['Game' => $game->id])->with('success', 'Успешно');
     }
 
@@ -53,7 +53,7 @@ class GameController extends Controller
 
     private function fillBaseFields(&$game, array $data)
     {
-        $baseFields = ['name', 'slug', 'developers', 'publishers', 'keywords', 'discount', 'steam_app_id', 'released_at'];
+        $baseFields = ['name', 'slug', 'developers', 'publishers', 'keywords', 'discount', 'steam_app_id', 'released_at', 'status'];
         foreach ($baseFields as $property) {
             if (isset($data[$property])) {
                 $game->$property = $data[$property];

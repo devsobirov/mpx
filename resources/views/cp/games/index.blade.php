@@ -42,11 +42,14 @@
                         @endif
                     </td>
                     <td style="text-align: left;">
-                        -
+                        @foreach($game->catalog as $category)
+                            <a href="#" class="button_orange_small">{{$category->name}}</a>
+                        @endforeach
                     </td>
                     <td>
                         <div class="flex" style="gap: 6px; flex-wrap: wrap; max-width:320px" >
                             <a href="{{route('cp.games.form', $game->id)}}" class="button_outline_small">Редактировать</a>
+                            <a href="{{route('cp.tree.index', ['game' => $game->slug])}}" class="button_outline_small">Дерево категорий</a>
                             <a href="#" target="_blank" class="button_outline_small">Посмотреть на сайте</a>
                             <a href="{{route('cp.games.delete', $game->id, false)}}" class="button_red_small game-delete-button"
                                data-question="{{ __('games.gameDeleteConfirmationTitle', ['name' => $game->name]) }}"

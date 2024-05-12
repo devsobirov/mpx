@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CP\CategoryController;
+use App\Http\Controllers\CP\GameCategoryController;
 use App\Http\Controllers\CP\GameController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +26,11 @@ Route::group(['prefix' => 'cp', 'as' => 'cp.'], function () {
        Route::post('/save', 'save')->name('save');
        Route::delete('/delete/{game}', 'delete')->name('delete');
        Route::post('/fetch-steam', 'fetchSteam')->name('fetch-steam');
+    });
+
+    Route::controller(GameCategoryController::class)->prefix('tree')->as('tree.')->group(function () {
+        Route::get('/add/{game:slug}', 'add')->name('add');
+       Route::get('/{game:slug}', 'index')->name('index');
     });
 });
 
