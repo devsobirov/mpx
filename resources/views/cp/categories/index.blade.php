@@ -4,8 +4,6 @@
         <div class="mb-4">
             <div class="flex ai-center jc-sb">
                 <h3>Шаблоны категорий</h3>
-
-                <a href="{{route('cp.products.form')}}" class="button_outline">Создать новый</a>
             </div>
         </div>
     </div>

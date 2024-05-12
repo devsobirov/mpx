@@ -8,20 +8,17 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('games', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('slug')->unique();
             $table->string('developers')->nullable();
             $table->string('publishers')->nullable();
             $table->json('genres')->nullable();
+            $table->json('description')->nullable();
 
             $table->string('image')->nullable();
-            $table->string('image_feed')->nullable();
             $table->string('image_og')->nullable();
-
-            $table->json('meta_title')->nullable();
-            $table->json('meta_description')->nullable();
             $table->string('keywords')->index()->nullable();
 
             $table->string('steam_app_id')->nullable();
@@ -36,6 +33,6 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('games');
     }
 };

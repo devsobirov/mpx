@@ -31,4 +31,5 @@ storage/debugbar
 .htaccess
 docker-compose.override.yml
 /public/ppalych.txt
+/public/cp-assets/img/
 enot.txt

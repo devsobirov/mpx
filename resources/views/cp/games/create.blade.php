@@ -1,5 +1,5 @@
 @php
-$product = new \App\Models\Product();
+$product = new \App\Models\Game();
 @endphp
 <div class="width-limiter" x-data="shopProductData()">
     <div class="pad mt-2 flex column pr-4 pl-4 pt-2 pb-2">
@@ -7,7 +7,7 @@ $product = new \App\Models\Product();
             @csrf
             <div class="flex ai-center jc-sb mb-2">
                 <h4>Созадние с помощью данных из Steam</h4>
-                <a href="{{ route('cp.products.fetch-steam') }}" class="button_outline ml-auto">Все игры</a>
+                <a href="{{ route('cp.games.fetch-steam') }}" class="button_outline ml-auto">Все игры</a>
             </div>
             <div class="flex jc-end mt-auto">
                 <label class="field w-full">
@@ -21,11 +21,11 @@ $product = new \App\Models\Product();
 
     <div class="pad flex column mt-3 pr-4 pl-4 pt-2 pb-2">
 
-        <form action="{{route('cp.products.save')}}" id="productForm" method="POST" enctype="multipart/form-data">
+        <form action="{{route('cp.games.save')}}" id="productForm" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="flex column" style="width: 100%">
 
-                @include('cp.products.partials.input-base-fields')
+                @include('cp.games.partials.input-base-fields')
 
                 <div class="flex mt-2" style="flex-direction: column">
                     <div class="flex mt-3">
@@ -54,7 +54,7 @@ $product = new \App\Models\Product();
                 </div>
 
                 <hr class="mb-2 mt-2">
-                @include('cp.products.partials.seo-fields')
+                @include('cp.games.partials.seo-fields')
 
                 <div class="flex jc-end mt-3">
                     <button type="submit" class="button_primary ml-2">Сохранить</button>
@@ -82,7 +82,7 @@ $product = new \App\Models\Product();
     }
 
     const productForm = document.getElementById('productForm');
-    const fetchSteamLink = "{{route('cp.products.fetch-steam')}}";
+    const fetchSteamLink = "{{route('cp.games.fetch-steam')}}";
     const createProductLink = '/';
     function shopProductData() {
         return {
@@ -123,7 +123,7 @@ $product = new \App\Models\Product();
                 try {
                     let response = await UIKit.network.post(createProductLink, data);
                     console.log(response, response.data);
-                    window.location = "{{route('cp.products.form')}}"+'/'+response.data.product.id;
+                    window.location = "{{route('cp.games.form')}}"+'/'+response.data.product.id;
                     UIKit.spinner.hide(productForm);
                 } catch (errors) {
                     console.error(errors);

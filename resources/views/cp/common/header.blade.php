@@ -10,7 +10,7 @@
                 <a href="/" class="main-menu__item" style="padding: 0; margin: 0;">{{ __('menu.home') }}</a>
             </div>
             <div class="main-menu__item">
-                <a href="{{route('cp.products.index')}}" class="main-menu__item" style="padding: 0; margin: 0 1rem;">Игры</a>
+                <a href="{{route('cp.games.index')}}" class="main-menu__item" style="padding: 0; margin: 0 1rem;">Игры</a>
             </div>
             <div class="main-menu__item">
                 <a href="{{route('cp.categories.index')}}" class="main-menu__item" style="padding: 0; margin: 0 1rem;">Категории</a>

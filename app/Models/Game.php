@@ -8,19 +8,18 @@ use App\Traits\HasImageUpload;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
 
-class Product extends Model implements
+class Game extends Model implements
     HasPublicUrlContract,
     HasImageUploadContract
 {
     use HasTranslations;
     use HasImageUpload;
 
-    public $translatable = ['genres', 'meta_title', 'meta_description']; //'description',
+    public $translatable = ['genres', 'description'];
     protected $guarded = false;
     protected $casts = ['released_at' => 'datetime'];
 
     const IMAGE_BASE_DIR = 'assets/images/games';
-    const WATERMARK_PATH = 'img/sectico.png';
 
     public function getUrlParams(): array
     {
