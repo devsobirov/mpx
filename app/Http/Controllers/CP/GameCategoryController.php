@@ -13,7 +13,9 @@ class GameCategoryController extends Controller
 {
     public function index(Game $game)
     {
-        $slugs = DB::table('game_category')->where('game_id', $game->id)->pluck('category_slug')->toArray();
+        $slugs = DB::table('game_category')
+            ->where('game_id', $game->id)
+            ->pluck('category_slug')->toArray();
 
         $list = Category::parents()
             ->with(['children' => function($query) use ($slugs) {
@@ -40,6 +42,15 @@ class GameCategoryController extends Controller
         ])->first();
 
         $game->tree()->attach($category->slug, ['parent_id' => $parent?->id]);
+        return redirect()->back()->with('success', 'Success');
+    }
+
+    public function remove(Game $game)
+    {
+        if (!$category =  Category::where('slug', \request('category'))->first()) {
+            return redirect()->back()->with('msg', 'Caetgory not found');
+        }
+        $game->tree()->detach($category->slug);
         return redirect()->back()->with('success', 'Success');
     }
 }

@@ -32,7 +32,10 @@ class Handler extends ExceptionHandler
 
     public function render($request, Throwable $exception)
     {
-        if ($exception instanceof ModelNotFoundException || $exception instanceof NotFoundHttpException) {
+        if (
+            !\Config::get('app.abort_if_404') &&
+            ($exception instanceof ModelNotFoundException || $exception instanceof NotFoundHttpException)
+        ) {
             \Log::info('404', [
                 'url' => url()->current(),
                 'user' => auth()->id()

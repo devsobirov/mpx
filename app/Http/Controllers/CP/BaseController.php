@@ -15,6 +15,7 @@ abstract class BaseController extends Controller
     public function __construct()
     {
         \App::setLocale('ru');
+        \Config::set('app.abort_if_404', true);
     }
 
     protected string $layout = 'cp.layouts.cp';

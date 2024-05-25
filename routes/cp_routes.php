@@ -30,6 +30,7 @@ Route::group(['prefix' => 'cp', 'as' => 'cp.'], function () {
 
     Route::controller(GameCategoryController::class)->prefix('tree')->as('tree.')->group(function () {
         Route::get('/add/{game:slug}', 'add')->name('add');
+        Route::get('/remove/{game:slug}', 'remove')->name('remove');
        Route::get('/{game:slug}', 'index')->name('index');
     });
 });
