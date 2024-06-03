@@ -1,0 +1,50 @@
+.message-box {
+    position: fixed;
+    top: 100px;
+    right: 20px;
+    width: 25%;
+    height: auto;
+    background: transparent;
+    > .alert {width: 100%}
+    z-index: 510;
+}
+.alert{
+    margin:15px auto;
+    padding:12px;
+    position:relative;
+    border-radius:5px;
+    box-shadow:0 0 5px $gray-15;
+    font-size: 13px;
+
+    h3 {margin-right: 30px;}
+}
+.close-alert{
+    position:absolute;
+    display: flex; justify-content: center; align-items: center;
+    width:20px;
+    height:20px;
+    border-width:1px;
+    border-style:solid;
+    border-radius:50%;
+    right:10px;
+    top:15px;
+    text-align:center;
+    font-size:1.5em;
+    cursor:pointer;
+}
+@mixin alert($name,$bgColor){
+    $accentColor:darken($bgColor,50);
+    .#{$name}{
+        background-color:#{$bgColor};
+        border-left:5px solid $accentColor;
+        * {color: $accentColor;}
+        .close-alert{
+            border-color:$accentColor;
+            color:$accentColor;
+        }
+    }
+}
+@include alert(simple-alert,#ebebeb);
+@include alert(success-alert,#a8f0c6);
+@include alert(danger-alert,#ed807a);
+@include alert(warning-alert,#ffd48a);

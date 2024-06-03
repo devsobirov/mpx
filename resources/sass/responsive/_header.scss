@@ -1,0 +1,272 @@
+header {
+    width: 100%;
+    position: sticky;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    z-index: 500;
+    nav {
+        width: 100%;
+        height: $header-height;
+        position: relative;
+        display: flex;
+        align-items: center;
+        border-bottom: 2px solid #383838;
+        padding-right: 2rem;
+
+        .logo { position: relative; z-index: 600; > img {height: 58px; max-width: unset} .logo-sm {display: none;}}
+
+        .catalog {
+            margin: 0 30px;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+        .menu {
+            flex: 1;
+            display: flex;
+            gap: 1.5rem;
+            margin-right: 30px;
+            right: 100%;
+        }
+        .actions {
+            display: flex;
+            gap: 20px;
+
+            .icons-bar {
+                display: flex;
+                gap: 20px;
+                align-items: center;
+
+                .icon-box {
+                    position: relative;
+                    cursor: pointer;
+                    svg {width: 28px; height: 28px; fill: $white}
+
+                    .count {
+                        position: absolute;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        width: 18px;
+                        height: 18px;
+                        background: $orange_primary;
+                        color: #fff;
+                        font-size: 12px;
+                        border-radius: 50%;
+                        top: 3px; right: 3px;
+                        transform: translate(50%, -50%);
+                    }
+                }
+            }
+            .account {
+                position: relative;
+                display: flex;
+                align-items: center;
+                gap: 15px;
+                cursor: pointer;
+                .submenu.expand {
+                    width: 15rem;
+                    right: -2rem;
+                    top: 105px;
+                    li {padding: 0 !important; >a {width: 100%;padding: 20px;}}
+                }
+                >div {font-weight: 500;}
+                img {width: 44px; height: 44px; border-radius: 50%;}
+                svg {width: 10px; height: 6px; fill: $gray;}
+
+                //&:hover > .submenu {display: block;}
+            }
+        }
+    }
+}
+.lang-menu {
+    img {width: 24px; height: 24px}
+    svg {width: 20px; height: 20px; fill: #B0B0B0}
+    .locale-item {display: flex;gap: 6px;align-items: center;cursor: pointer;width: auto;}
+}
+//.lang-menu {
+//    //svg {width: 10px; height: 10px; fill: $gray; margin-left: 5px}
+//
+//    .submenu.expand {
+//        top: 70px; right: -50px;
+//        li {
+//            min-width: 100px;
+//            a {display: flex;}
+//        }
+//    }
+//}
+//@media screen and (max-width: 1100px) {
+//    header { nav {
+//        .logo img {height: 38px;}
+//        .menu {gap: .75rem;}
+//        .actions {gap: 30px;}
+//        .account {> div {display: none;}}
+//    }}
+//}
+//
+//@media screen and (max-width: 992px) {
+//    .md-d-none {display: none !important;}
+//    header {
+//        height: 90px;
+//        nav {
+//            .has-sub-area.open > .sub-area {top: 0}
+//            .catalog {
+//                height: 90px; width: 100%;
+//                .sub-area {
+//                    overflow: auto; flex-direction: column; justify-content: flex-start; align-items: flex-start;gap: 0; padding: 0;
+//                    position: fixed; top: 0; left:0; bottom: 0; right: 0; z-index: 1000;
+//                    .sub-area-controls {
+//                        height: 90px; width: 100%; padding: 0 20px;
+//                        display: flex; justify-content: space-between; align-items: center;
+//                        position: absolute; top: 0;
+//                        svg {width: 18px; height: 18px; transform: rotate(180deg); fill: white !important;}
+//                        svg.back {transform: rotate(180deg)}
+//                    }
+//                    .sub-area-navbar{
+//                        width: 100%; margin-top: 90px;
+//                        .subline {gap: 0}
+//                        .subline-nav-link, .subline-title {
+//                            width: 100%;
+//                        }
+//                        .subline-title { svg {display: block;}}
+//                    };
+//                    .subline {
+//                        display: flex; flex-direction: column; justify-content: flex-start; align-items: flex-start; gap: 10px;
+//                        ul {
+//                            display: flex;flex-direction: column;justify-content: flex-start; align-items: flex-start;width: 100%;
+//                            li:not(.link-summary)  {
+//                                width: 100%;
+//                                margin-bottom: .325rem !important;
+//                                padding: .5rem .75rem;
+//                                background: $gray-15;
+//                                transition: color 0.4s;
+//                                display: flex; align-items: center; justify-content: space-between;
+//                                font-size: 18px;
+//                                color: white; font-weight: 700; cursor: pointer;
+//                                &:hover {
+//                                    > span {color: $orange_primary;}
+//                                    > svg {transform: rotate(0)}
+//                                }
+//                                svg {
+//                                    width: 16px; height: 16px; fill: white; transition: all .4s; transform: rotate(90deg);
+//                                }
+//                                > span {color: white !important;}
+//                                a {font-size: 18px}
+//                            }
+//                            .link-summary {padding-left: 12px}
+//                            .subline-title { svg {display: block;}}
+//                        }
+//                    }
+//                }
+//            }
+//            .menu {display: none;}
+//            .menu.expand {
+//                display: flex;
+//                flex-direction: column;
+//                justify-content: flex-start !important;
+//                gap: 3rem;
+//                position: fixed;
+//                width: 100%;
+//                height: 100%;
+//                top: 0; bottom: 0; left: 0; right: 0;
+//                padding: 30px 60px;
+//                background-color: $black_bg;
+//                z-index: 15;
+//                padding-top: 100px;
+//
+//                .close-icon {
+//                    visibility: visible;
+//                    top: 28px; right: 60px;
+//                    position: absolute;
+//                    z-index: 16;
+//                    svg {width: 28px; height: 28px; fill: $white;}
+//                }
+//                .guest-link {display: flex; gap: 6px; margin-top: 15px}
+//            }
+//            .actions {
+//                width: 100%;justify-content: space-between; margin: 0 20px;
+//                .icons-bar {gap: 15px;}
+//            }
+//            .guest-actions {display: none}
+//            .mobile-menu-toggler {display: block;}
+//            .lang-menu {
+//                .submenu.expand {top: 60px; right: -50px;}
+//            }
+//        }
+//    }
+//
+//    footer {
+//        .inner {width: 100%; gap: 33px;} //flex-wrap: wrap; .logo {width:100%}
+//    }
+//}
+//
+//@media  (max-width: 767px) {
+//    header {
+//        height: 80px;
+//        nav {
+//            gap: 30px;
+//
+//            .catalog {margin:0; height: 80px;}
+//            .actions { gap: 10px; margin: 0;
+//                .icons-bar {gap: 15px;}
+//                .account {img {width: 40px; height: 40px;}}
+//                .notifications {.submenu.expand {top: 60px;}}
+//                 .basket.has-sub-area.open {
+//                    >.sub-area {top: 90px; right: -250px;}
+//                 }
+//            }
+//            .mobile-menu-toggler {display: block;}
+//            //.has-sub-area.open {
+//            //    > .sub-area {top: 80px;}
+//            //}
+//
+//        }
+//    }
+//
+//
+//}
+//
+//@media  (max-width: 635px) {
+//    header { nav {
+//        .logo {> .logo-lg {display: none;} >.logo-sm {display: block;}}
+//        .lang-menu {display: none;}
+//        .sm-link {display: block;}
+//    }}
+//}
+//@media (min-width: 320px) and (max-width: 576px) {
+//    header { nav {
+//        gap: 20px;
+//        .catalog {
+//            button {
+//                padding: 8px; margin-left: 0; border-radius: 12px;
+//                svg {width: 20px;height: 20px;}
+//                span {display: none;}
+//            }
+//            .sub-area {
+//                overflow: auto !important;
+//                width: 100% !important;
+//            }
+//        }
+//        .actions {
+//            justify-content: start;
+//            .icons-bar {margin-top: .75rem; gap: 10px;
+//                .icon-box {svg {width: 24px; height: 24px;}}
+//            }
+//            .notifications {.submenu.expand {top: 55px; right: -10rem; width: 20rem; li {padding: 15px;}}}
+//            .basket.has-sub-area.open {
+//            >.sub-area {top: 80px; right: -150px;}
+//            }
+//        }
+//    }}
+//
+//    footer {
+//        .inner {
+//            gap: 40px;
+//            flex-wrap: wrap;
+//            .logo, .payment-info {width: 100%;}
+//            .links {width: auto;}
+//        }
+//    }
+//}

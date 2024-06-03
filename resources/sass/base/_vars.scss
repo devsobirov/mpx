@@ -1,0 +1,61 @@
+// colors
+$black_primary: #000000;
+$black_bg: #000000;
+$black_light_bg:#2A303C;
+$black_hover: #2C323E;
+$gray: #5F6982;
+$gray-25: rgba(95, 105, 130, .25);
+$gray-15: rgba(95, 105, 130, .15);
+$gray-5: rgba(95, 105, 130, .05);
+$brown: #807575;
+$orange_primary: #E89F32;
+$orange_light: #FABD48;
+$yellow: #FFBA34;
+$yellow-light: rgb(255, 214, 0);
+$yellow-light-10: rgba(255, 214, 0, 0.1);
+$yellow-10: rgba(255, 186, 52, 0.1);
+$warning: #EF8A41;
+$orange-20:  rgba(220, 151, 47, 0.2);
+$orange-30:  rgba(220, 151, 47, 0.3);
+$orange_light-20: rgba(250, 189, 72, 0.2);
+$white: #fff;
+$green: #42A05D;
+$green-15: rgba(66, 160, 93, .15);
+$light-blue: #168DC8;
+$light-blue-50: rgba(22, 141, 200, .5);
+$danger: #EF5641;
+$red:  #c51244;
+$pink: #db3e6a;
+$pink-35: rgba(219, 62, 106, 0.35);
+$pink-65: rgba(219, 62, 106, 0.65);
+$gold: #ffba34;
+$gold-10: rgba(255, 186, 52, 0.1);
+$gold-5: rgba(255, 186, 52, 0.05);
+$silver: #78C6F2;
+$silver-10: rgba(120, 198, 242, 0.1);
+$silver-5: rgba(120, 198, 242, 0.05);
+$bronze: #CD7F58;
+$bronze-10: rgba(205, 127, 88, 0.1);
+$bronze-5: rgba(205, 127, 88, 0.05);
+// social tooltips
+$color-discord: rgb(86, 99, 247);
+$color-youtube: rgb(255,0,0);
+$color-facebook: rgb(66, 103, 178);
+$color-telegram: rgb(29,161,242);
+$color-whatsapp: rgb(37, 211, 102);
+$color-vk: rgb(76, 117, 163);;
+$color-gradients-instagram: #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%;
+$chat-blue: #4786ff;
+// sizes
+$container_width: 1320px;
+$header_height: 100px;
+$sub_header_height: 80px;
+$section_limiter: 6.25rem;
+$section-limiter-mob: 3.625rem;
+
+$border-default: 1px solid $gray-15;
+$border-primary: 1px solid $orange-primary;
+$border-yellow: 1px solid $yellow-light;
+
+$bg-notice-secondary: linear-gradient(0deg, #484545, #484545), linear-gradient(0deg, $yellow-light, $yellow-light);
+

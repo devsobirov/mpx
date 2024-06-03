@@ -1,0 +1,81 @@
+@import './_vars';
+
+  .loader-backdrop {
+    position: fixed; left: 0; right: 0; top: 0; bottom: 0; z-index: 9999;
+    width: 100%; height: 100vh; max-width: 100%;
+    display: none; justify-content: center;align-items: center;
+    background: linear-gradient(to bottom, rgba(0,0,0, 0.5), rgba(0,0,0, .8));
+    padding: 32px;overflow: hidden;
+
+    .close-btn {
+        position: absolute; top: 20px;right: 20px;
+        border:  $border-default; border-radius: 50%;
+        width: 28px; height: 28px; background: none;
+        display: flex; justify-content: center; align-items: center;
+        cursor: pointer;
+        transition: all 0.8s;
+        svg { fill: $gray; height: 20px; width: 20px; transition: all 0.8s;}
+        &:hover {border-color: $orange-primary; svg {fill: $orange-primary;}}
+    }
+    .filter-contrast { filter: contrast(5); background-color: white;}
+
+    .dot-falling {
+        position: relative;
+        left: -9999px;
+        width: 12px;
+        height: 12px;
+        border-radius: 6px;
+        background-color: $orange-primary;
+        color: $orange-primary;
+        box-shadow: 9999px 0 0 0 $orange-primary;
+        animation: dot-falling 1s infinite linear;
+        animation-delay: 0.1s;
+
+        &::before, &::after {
+            content: ""; display: inline-block;position: absolute;top: 0;
+            width: 12px;height: 12px;border-radius: 6px;
+            background-color: $orange-primary; color: $orange-primary;
+        }
+
+        &::before { left: -4px; animation: dot-falling-before 1s infinite linear;}
+        &::after { right: -4px; animation: dot-falling-after 1s infinite linear;}
+    }
+  }
+  .loader-backdrop.open {display: flex;}
+@keyframes dot-falling {
+  0% {
+    box-shadow: 9999px -15px 0 0 rgba(152, 128, 255, 0);
+  }
+  25%, 50%, 75% {
+    box-shadow: 9999px 0 0 0 $orange-primary;
+  }
+  100% {
+    box-shadow: 9999px 15px 0 0 rgba(152, 128, 255, 0);
+  }
+}
+@keyframes dot-falling-before {
+  0% {
+    box-shadow: 9984px -15px 0 0 rgba(152, 128, 255, 0);
+  }
+  25%, 50%, 75% {
+    box-shadow: 9984px 0 0 0 $orange-primary;
+  }
+  100% {
+    box-shadow: 9984px 15px 0 0 rgba(152, 128, 255, 0);
+  }
+}
+@keyframes dot-falling-after {
+  0% {
+    box-shadow: 10014px -15px 0 0 rgba(152, 128, 255, 0);
+  }
+  25%, 50%, 75% {
+    box-shadow: 10014px 0 0 0 $orange-primary;
+  }
+  100% {
+    box-shadow: 10014px 15px 0 0 rgba(152, 128, 255, 0);
+  }
+}
+
+@media  (max-width: 767px) {
+    .loader-backdrop .close-btn {display: none;}
+}

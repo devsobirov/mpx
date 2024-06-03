@@ -1,0 +1,48 @@
+.social-toolbar {
+    max-width: 100px;
+    position: fixed;
+    top: 150px;
+    z-index: 999;
+
+    ul {
+        padding: 0px;
+        transform: translate(-255px, 0);
+
+        li {
+            display: block;
+            margin: 6px;
+            // background: rgba(255,196, 54, .85);
+            width: 300px;
+            text-align: right;
+            padding: 10px;
+            border-radius: 0 30px 30px 0;
+            transition: all 1s;
+
+            a {
+                display: flex;justify-content: flex-end;align-items: center;text-decoration: none;font-weight: 600;color: #ffffff;
+                > span {color: #ffffff;font-weight: 600;}
+            }
+
+            svg {display: block;width: 40px;margin-left: 10px;transform: rotate(0deg);}
+
+            &:hover {
+                transform: translate(110px, 0);
+                svg {color: #fff;transform: rotate(360deg); transition: all 1s;}
+            }
+        }
+    }
+}
+
+#toolbar-discord, .bg-discord {background: $color-discord;}
+#toolbar-youtube, .bg-youtube {background: $color-youtube;}
+#toolbar-facebook, .bg-facebook {background: $color-facebook;}
+#toolbar-telegram, .bg-telegram {background: $color-telegram;}
+#toolbar-whatsapp, .bg-whatsapp {background: $color-whatsapp;}
+
+#toolbar-instagram, .bg-instagram {
+    background: -moz-linear-gradient(45deg,$color-gradients-instagram);
+    background: -webkit-linear-gradient(45deg,$color-gradients-instagram);
+    background: linear-gradient(45deg,$color-gradients-instagram);
+}
+
+

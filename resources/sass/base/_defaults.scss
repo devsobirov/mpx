@@ -1,0 +1,103 @@
+@font-face {
+    font-display: swap;
+    src: url('/assets/fonts/TTNorms-Light.ttf');
+    font-family: "TTNorms-Medium";
+    font-style: normal;
+    font-weight: 300;
+}
+@font-face {
+    font-display: swap;
+    src: url('/assets/fonts/TTNorms-Regular.ttf');
+    font-family: "TTNorms-Medium";
+    font-style: normal;
+    font-weight: 400;
+}
+@font-face {
+    font-display: swap;
+    src: url('/assets/fonts/TTNorms-Italic.ttf');
+    font-family: "TTNorms-Medium";
+    font-style: italic;
+}
+@font-face {
+    font-display: swap;
+    src: url('/assets/fonts/TTNorms-Medium.ttf');
+    font-family: "TTNorms-Medium";
+    font-style: normal;
+    font-weight: 500;
+}
+@font-face {
+    font-display: swap;
+    src: url('/assets/fonts/TTNorms-Bold.ttf');
+    font-family: "TTNorms-Medium";
+    font-style: normal;
+    font-weight: 700;
+}
+[x-cloak] { display: none !important; }
+
+* {
+    color: $white;
+    font-family: 'TTNorms-Medium';
+    line-height: 1.5;
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    font-feature-settings: 'liga' off;
+    font-variant-ligatures: none;
+}
+
+ul, li {
+    list-style-type: none;
+}
+
+a, button {
+    text-decoration: none;
+    display: inline-block;
+    border: none;
+    outline: none;
+    background: none;
+    cursor: pointer;
+}
+
+select {
+    -webkit-appearance: none;
+    -ms-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    outline: none;
+}
+
+input {
+    -webkit-appearance: none;
+    -ms-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: none;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+textarea {
+    -webkit-appearance: none;
+    -ms-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    outline: none;
+    resize: none;
+}
+
+img, iframe, video {
+    max-width: 100%; height: auto;
+}

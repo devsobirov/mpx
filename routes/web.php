@@ -12,5 +12,6 @@ Route::group([
         return view('welcome');
     });
 
+    Route::view('template', 'template');
     Auth::routes(['register' => false, 'verify' => false, 'reset' => false]);
 });

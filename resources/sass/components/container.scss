@@ -1,0 +1,13 @@
+.container {
+    position: relative;
+    max-width: 100%;
+    width: $container_width;
+    margin: 0 auto;
+    padding: 0;
+    background: none;
+    overflow-x: hidden;
+}
+
+.container.x-visible {
+    overflow-x: visible;
+}

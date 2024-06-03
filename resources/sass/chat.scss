@@ -1,0 +1,136 @@
+@import 'base/_vars';
+
+.chat-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 20px;
+}
+
+.chat-sidebar, .chat-content {
+    background-color: $black_bg;
+    border-radius: 30px;
+    padding: 0;
+    max-height: 100vh; overflow: hidden;
+    >div+div {border-top: $border-default}
+    .chat-header {padding: 30px}
+    .chat-item {
+        padding: 20px 30px;
+            width: 100%;
+            cursor: pointer;
+        display: flex; justify-content: start; align-items: center; gap: 18px;
+        .item-number {
+            width: 60px; min-width: 60px; height: 60px; border-radius: 30px;
+            display: flex; justify-content: center; align-items: center;
+            background-color: $orange-30; color: $orange_primary;
+            position: relative;
+            .count {
+                position: absolute; top: -8px; right: -8px;
+                display: flex; justify-content: center; align-items: center;
+                color: $white; background-color: $orange-primary; border-radius: 50%;
+                width: 22px; height: 22px; font-size: 14px; font-weight: 500
+            }
+        }
+        .admin.item-number{background-color: $orange_light; color: $white}
+        .item-meta { width: 100%;
+            .meta-author {
+                    font-weight: 500;
+                    font-size: 16px;
+                }
+            .meta-latest {font-size: 14px; color: $gray}
+            .meta-icons {
+                display: flex; justify-content: start; align-items: center;flex-wrap: wrap; gap: 20px;
+                * {font-size: 16px; color: $gray;} svg {fill: $gray; width:18px; height:18px}
+                .icon-badge {display: flex; justify-content: start; align-items: center; gap: 8px}
+            }
+        }
+    }
+    .chat-item.active {
+        background-color: $orange-primary;
+        .item-number{background-color: $orange_light; color: $white}
+        .meta-latest {color: $white}
+    }
+}
+.chat-sidebar {
+    .sidebar-scroll {
+        max-height: 600px; margin-bottom: 30px;
+        overflow: auto;
+        >div+div{border-top: $border-default}
+    }
+}
+.chat-content {
+    display: flex;
+        flex-direction: column;
+        position: relative;
+    > div {width: 100%}
+    .chat-messages {
+        height: 100%;padding: 30px; overflow: auto; position: relative;display: flex; flex-direction: column-reverse;
+        gap: 20px;align-items: start;
+        .message {
+            max-width: 75%;
+            min-width: 30%; width: auto;
+            box-shadow: 0px 1px 4px rgba(0,0,0, .25);
+            background: rgba(44,49,62, 0.9); padding: 6px 14px; border-radius: 14px;
+            .author {
+                font-weight: 500;
+                margin-right: 10px;
+                color: $green;
+            }
+            .date {color:$gray;}
+            a {
+                display: inline-block;
+                text-decoration: underline;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                overflow: hidden;
+                max-width: 80%;
+            }
+        }
+        .message-text {word-wrap: break-word;}
+        .reverse {align-self: flex-end;}
+        .system {
+            align-self: center;
+            box-shadow: unset; background: unset; text-align: center;
+            .date, .author {display: none;}
+            .message-text {
+                color: $gray;
+                font-style: italic;
+                a {text-decoration: underline;}
+            }
+        }
+    }
+
+    .chat-controls {
+        position: absolute;
+        width: auto;
+        top: 120px;
+        right: 20px;
+        background: transparent;
+        border: none;
+        z-index: 50;
+    }
+    .chat-actions {align-self: flex-end; padding: 30px; gap: 20px; display: flex; align-items: center}
+}
+
+@media screen and (max-width: 768px) {
+    .chat-wrapper {
+        grid-template-columns: 1fr;
+        .chat-sidebar {
+            max-height: 50vh;
+            .item-number {display: none;}
+            .chat-item {padding: 20px;}
+        }
+        .chat-sidebar .chat-header, .chat-content .chat-header {
+            padding: 20px 30px;
+        }
+
+        .chat-content {
+            .chat-item {
+                flex-direction: column;
+                gap: 12px;
+                .btn-half-orange {padding: 12px 20px;}
+                .meta-author {text-align: center;}
+            }
+            .item-number {display: none;}
+        }
+    }
+}
